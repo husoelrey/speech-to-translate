@@ -36,7 +36,7 @@ public class TranslationService
                 {
                     parts = new object[]
                     {
-                        new { text = "Translate this Turkish audio to Bulgarian text. Return only the translated text." },
+                        new { text = "You are an expert native translator. Translate the provided Turkish audio into natural, everyday Bulgarian text.\n\nCRITICAL INSTRUCTIONS:\n- Pay close attention to Turkish suffixes and cases (e.g., '-den/-dan' means 'from', so 'marketten alacağım' = 'I will buy from the market/магазина', NOT 'the market will buy').\n- Pay attention to the hidden subject (e.g., 'alacağım' = 'I will buy').\n- In everyday Turkish, 'yurt' means 'student dormitory' (общежитие), NOT a traditional tent (юрта).\n- Output MUST be 100% natural Bulgarian.\n- Reply ONLY with the final Bulgarian text. Do NOT add any conversational responses, greetings, explanations, or quotes." },
                         new
                         {
                             inline_data = new
