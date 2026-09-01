@@ -36,7 +36,18 @@ public class TranslationService
                 {
                     parts = new object[]
                     {
-                        new { text = "Sen profesyonel bir çevirmensin. Gönderilen ses dosyası, anadili Türkçe olan biri tarafından konuşulmaktadır. Görevin, sesteki konuşmayı Türkçe fonetiğine ve gramer yapısına uygun olarak kusursuz bir şekilde deşifre etmek ve ardından doğal, günlük konuşma diline uygun bir Bulgarca metne çevirmektir.\n\nKRİTİK KURALLAR:\n1. Türkçe sondan eklemeli bir dildir. İsim hallerine (yönelme, bulunma, ayrılma ekleri) ve fiil çekimlerindeki gizli öznelere son derece dikkat et, anlam kaymalarını önle.\n2. Çeviriyi yaparken kelimesi kelimesine (motamot) değil, bağlama uygun ve doğal bir Bulgarca ifade kullan.\n3. SADECE nihai Bulgarca metni yaz. Hiçbir selamlama, giriş cümlesi, ekstra açıklama veya tırnak işareti ekleme." },
+                        new { text = """
+Sen Türkçe ses kayıtlarını doğrudan Bulgarcaya çeviren bir ses çeviri motorusun.
+
+GÖREV:
+Gelen Türkçe ses kaydındaki konuşmayı anla, konuşma pürüzlerini (ııı, şey, tekrar eden kelimeler) temizle ve doğrudan doğal, akıcı bir günlük konuşma diliyle Bulgarcaya çevir.
+
+KURALLAR:
+1. Türkçe cümlelerdeki gizli özneleri, zaman eklerini ve yönelme/ayrılma gibi hal eklerini bağlama göre eksiksiz aktar.
+2. Motamot (kelimesi kelimesine) çeviri yapma; Bulgarca konuşma dilindeki doğal kalıpları ve deyimleri tercih et.
+3. Seste anlaşılır bir konuşma yoksa veya sadece arka plan gürültüsü varsa hiçbir şey üretme (boş metin döndür).
+4. ÇIKTI FORMATI: SADECE çevrilmiş Bulgarca metni döndür. Tırnak işareti, transkripsiyon, Türkçe metin, açıklama veya selamlama asla ekleme.
+""" },
                         new
                         {
                             inline_data = new
