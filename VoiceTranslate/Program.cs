@@ -70,13 +70,15 @@ static class Program
                     {
                         string translatedText = await translationService.TranslateAudioAsync(wavBytes);
                         
-                        // TODO: P3 - Paste text using PasteManager
-                        // For now, simulate success by showing a MessageBox and resetting state
+                        await PasteManager.PasteAsync(translatedText, appSettings.PasteDelayMs);
+                        
                         trayIcon.SetState(TrayState.Success);
+                        
+                        string previewText = translatedText.Length > 30 ? translatedText.Substring(0, 27) + "..." : translatedText;
+                        trayIcon.ShowSuccess($"Pasted: {previewText}");
                         
                         if (Application.OpenForms.Count == 0 && trayIcon != null)
                         {
-                            // Back to idle after a short delay
                             await System.Threading.Tasks.Task.Delay(2000);
                             trayIcon.SetState(TrayState.Idle);
                         }
@@ -84,7 +86,7 @@ static class Program
                     catch (Exception ex)
                     {
                         trayIcon.SetState(TrayState.Error);
-                        MessageBox.Show($"Translation failed: {ex.Message}", "VoiceTranslate Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        trayIcon.ShowError(ex.Message);
                     }
                 });
             }

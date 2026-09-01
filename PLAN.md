@@ -85,11 +85,11 @@ VoiceTranslate.exe (.NET 8 Windows App)
 - [x] Hata yönetimi: rate limit, timeout, geçersiz yanıt
 
 ### P3 — Yapıştırma & Bildirim (Pano Korumalı)
-- [ ] `PasteManager.cs`: Mevcut panoyu yedekle
-- [ ] Sonucu clipboard'a yaz, `InputSimulatorPlus` ile `Ctrl+V` gönder
-- [ ] Focus koruması: yapıştırmadan önce kısa bir bekleme
-- [ ] Panodaki eski veriyi geri yükle
-- [ ] Tray balon bildirimi ve hata yönetimi
+- [x] `PasteManager.cs`: Mevcut panoyu yedekle
+- [x] Sonucu clipboard'a yaz, `InputSimulatorPlus` ile `Ctrl+V` gönder
+- [x] Focus koruması: yapıştırmadan önce kısa bir bekleme
+- [x] Panodaki eski veriyi geri yükle
+- [x] Tray balon bildirimi ve hata yönetimi
 
 ### P4 — Ayarlar & Paketleme
 - [ ] `SettingsForm.cs`: API key ayarı

@@ -94,6 +94,16 @@ public class TrayIcon : IDisposable
         }
     }
 
+    public void ShowSuccess(string message)
+    {
+        _notifyIcon.ShowBalloonTip(3000, "VoiceTranslate", message, ToolTipIcon.Info);
+    }
+
+    public void ShowError(string message)
+    {
+        _notifyIcon.ShowBalloonTip(5000, "VoiceTranslate Error", message, ToolTipIcon.Error);
+    }
+
     public void Dispose()
     {
         if (_notifyIcon.Icon != null)
