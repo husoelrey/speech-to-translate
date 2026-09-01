@@ -36,7 +36,7 @@ public class TranslationService
                 {
                     parts = new object[]
                     {
-                        new { text = "Sen uzman bir çevirmensin. Gönderilen sesteki konuşma kesinlikle Türkçedir. Öncelikle duyduğun sesi Türkçe fonetiğine ve kelime dağarcığına (örneğin 'atıştırmalık' gibi kelimelere) uygun olarak kusursuzca algıla. Ardından bu Türkçe metni doğal ve günlük Bulgarcaya çevir.\n\nKRİTİK KURALLAR:\n1. Türkçe eklere (-den, -e) ve gizli özneye dikkat et ('marketten alacağım' -> ben marketten alacağım demektir, market alacak demek değildir).\n2. Gündelik Türkçede 'yurt' kelimesi öğrenci yurdu (общежитие) demektir.\n3. SADECE nihai Bulgarca çeviriyi yaz. Merhaba, 'İşte çeviri' vb. hiçbir sohbet, açıklama veya tırnak işareti ekleme." },
+                        new { text = "Sen profesyonel bir çevirmensin. Gönderilen ses dosyası, anadili Türkçe olan biri tarafından konuşulmaktadır. Görevin, sesteki konuşmayı Türkçe fonetiğine ve gramer yapısına uygun olarak kusursuz bir şekilde deşifre etmek ve ardından doğal, günlük konuşma diline uygun bir Bulgarca metne çevirmektir.\n\nKRİTİK KURALLAR:\n1. Türkçe sondan eklemeli bir dildir. İsim hallerine (yönelme, bulunma, ayrılma ekleri) ve fiil çekimlerindeki gizli öznelere son derece dikkat et, anlam kaymalarını önle.\n2. Çeviriyi yaparken kelimesi kelimesine (motamot) değil, bağlama uygun ve doğal bir Bulgarca ifade kullan.\n3. SADECE nihai Bulgarca metni yaz. Hiçbir selamlama, giriş cümlesi, ekstra açıklama veya tırnak işareti ekleme." },
                         new
                         {
                             inline_data = new
