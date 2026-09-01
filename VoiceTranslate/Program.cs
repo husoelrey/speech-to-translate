@@ -38,10 +38,18 @@ static class Program
         var appSettings = new AppSettings();
         configuration.Bind(appSettings);
 
-        using var trayIcon = new TrayIcon();
+        using var trayIcon = new TrayIcon(() => 
+        {
+            using var settingsForm = new SettingsForm(appSettings);
+            settingsForm.ShowDialog();
+            
+            // Reload settings
+            configuration.Reload();
+            configuration.Bind(appSettings);
+        });
         using var audioRecorder = new AudioRecorder();
         using var hotkeyManager = new HotkeyManager();
-        var translationService = new TranslationService(appSettings.GeminiApiKey);
+        var translationService = new TranslationService(appSettings);
 
         hotkeyManager.RecordingStarted += (s, e) =>
         {

@@ -92,9 +92,9 @@ VoiceTranslate.exe (.NET 8 Windows App)
 - [x] Tray balon bildirimi ve hata yönetimi
 
 ### P4 — Ayarlar & Paketleme
-- [ ] `SettingsForm.cs`: API key ayarı
-- [ ] Uygulama başlangıcıyla otomatik çalışma (Registry Run key)
-- [ ] `dotnet publish` ile tek `.exe` (self-contained, Windows x64)
+- [x] `SettingsForm.cs`: API key ayarı
+- [x] Uygulama başlangıcıyla otomatik çalışma (Registry Run key)
+- [x] `dotnet publish` ile tek `.exe` (self-contained, Windows x64)
 
 ## API Konfigürasyonu
 

@@ -3,23 +3,25 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using VoiceTranslate.Config;
 
 namespace VoiceTranslate.Core;
 
 public class TranslationService
 {
-    private readonly string _apiKey;
+    private readonly AppSettings _appSettings;
     private readonly HttpClient _httpClient;
 
-    public TranslationService(string apiKey)
+    public TranslationService(AppSettings appSettings)
     {
-        _apiKey = apiKey;
+        _appSettings = appSettings;
         _httpClient = new HttpClient();
     }
 
     public async Task<string> TranslateAudioAsync(byte[] wavBytes)
     {
-        if (string.IsNullOrWhiteSpace(_apiKey))
+        string apiKey = _appSettings.GeminiApiKey;
+        if (string.IsNullOrWhiteSpace(apiKey))
         {
             throw new InvalidOperationException("Gemini API key is not configured.");
         }
@@ -51,7 +53,7 @@ public class TranslationService
         string jsonBody = JsonSerializer.Serialize(requestBody);
         var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
 
-        string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key={_apiKey}";
+        string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key={apiKey}";
 
         var response = await _httpClient.PostAsync(url, content);
         

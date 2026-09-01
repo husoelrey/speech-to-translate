@@ -19,15 +19,20 @@ public class TrayIcon : IDisposable
     private readonly ContextMenuStrip _contextMenu;
     private TrayState _currentState;
 
-    public TrayIcon()
+    public TrayIcon(Action onSettingsClicked)
     {
         _contextMenu = new ContextMenuStrip();
         
         var titleItem = new ToolStripMenuItem("VoiceTranslate");
         titleItem.Enabled = false;
         
-        var settingsItem = new ToolStripMenuItem("Settings");
-        settingsItem.Enabled = false; // Grayed out for now
+        var settingsItem = new ToolStripMenuItem("Settings...");
+        settingsItem.Click += (s, e) => onSettingsClicked();
+        
+        var startupItem = new ToolStripMenuItem("Run at Windows Startup");
+        startupItem.CheckOnClick = true;
+        startupItem.Checked = IsStartupEnabled();
+        startupItem.CheckedChanged += (s, e) => SetStartup(startupItem.Checked);
         
         var exitItem = new ToolStripMenuItem("Exit");
         exitItem.Click += (s, e) => Application.Exit();
@@ -35,6 +40,8 @@ public class TrayIcon : IDisposable
         _contextMenu.Items.Add(titleItem);
         _contextMenu.Items.Add(new ToolStripSeparator());
         _contextMenu.Items.Add(settingsItem);
+        _contextMenu.Items.Add(startupItem);
+        _contextMenu.Items.Add(new ToolStripSeparator());
         _contextMenu.Items.Add(exitItem);
 
         _notifyIcon = new NotifyIcon
@@ -45,6 +52,43 @@ public class TrayIcon : IDisposable
         };
         
         SetState(TrayState.Idle);
+    }
+
+    private const string RegistryRunKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+    private const string AppName = "VoiceTranslate";
+
+    private bool IsStartupEnabled()
+    {
+        try
+        {
+            using var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryRunKey, false);
+            return key?.GetValue(AppName) != null;
+        }
+        catch { return false; }
+    }
+
+    private void SetStartup(bool enable)
+    {
+        try
+        {
+            using var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryRunKey, true);
+            if (key != null)
+            {
+                if (enable)
+                {
+                    string appPath = Application.ExecutablePath;
+                    key.SetValue(AppName, $"\"{appPath}\"");
+                }
+                else
+                {
+                    key.DeleteValue(AppName, false);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Could not update startup settings: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
     public void SetState(TrayState state)
