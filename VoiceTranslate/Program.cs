@@ -41,6 +41,7 @@ static class Program
         using var trayIcon = new TrayIcon();
         using var audioRecorder = new AudioRecorder();
         using var hotkeyManager = new HotkeyManager();
+        var translationService = new TranslationService(appSettings.GeminiApiKey);
 
         hotkeyManager.RecordingStarted += (s, e) =>
         {
@@ -62,21 +63,30 @@ static class Program
             try
             {
                 byte[] wavBytes = audioRecorder.StopRecording();
-                // TODO: P2 - send to Gemini API
-                // For now, simulate success after a delay
+                
                 System.Threading.Tasks.Task.Run(async () =>
                 {
-                    await System.Threading.Tasks.Task.Delay(1000);
-                    // P2 will replace this
-                    // For now, just reset to Idle
-                    if (Application.OpenForms.Count == 0 && trayIcon != null)
+                    try
                     {
-                        // Needs to be on UI thread or trayIcon needs to handle Invoke, 
-                        // but TrayIcon icon updates don't strictly require UI thread, though it's safer.
+                        string translatedText = await translationService.TranslateAudioAsync(wavBytes);
+                        
+                        // TODO: P3 - Paste text using PasteManager
+                        // For now, simulate success by showing a MessageBox and resetting state
+                        trayIcon.SetState(TrayState.Success);
+                        
+                        if (Application.OpenForms.Count == 0 && trayIcon != null)
+                        {
+                            // Back to idle after a short delay
+                            await System.Threading.Tasks.Task.Delay(2000);
+                            trayIcon.SetState(TrayState.Idle);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        trayIcon.SetState(TrayState.Error);
+                        MessageBox.Show($"Translation failed: {ex.Message}", "VoiceTranslate Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 });
-                
-                // P1 just stops recording and sets state to Processing.
             }
             catch (Exception ex)
             {

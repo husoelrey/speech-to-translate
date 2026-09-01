@@ -79,10 +79,10 @@ VoiceTranslate.exe (.NET 8 Windows App)
 - [x] Tray ikonu durumu: gri → kırmızı (kayıt) → sarı (işleniyor) → yeşil (tamam)
 
 ### P2 — Gemini API ile Sesli Çeviri
-- [ ] `TranslationService.cs`: WAV byte[] → Bulgarca metin (Doğrudan ses dosyası gönderimi)
-- [ ] Gemini `generateContent` endpoint (`gemini-3.5-flash-lite`)
-- [ ] Prompt: "Translate this Turkish audio to Bulgarian text. Return only the translated text."
-- [ ] Hata yönetimi: rate limit, timeout, geçersiz yanıt
+- [x] `TranslationService.cs`: WAV byte[] → Bulgarca metin (Doğrudan ses dosyası gönderimi)
+- [x] Gemini `generateContent` endpoint (`gemini-3.5-flash-lite`)
+- [x] Prompt: "Translate this Turkish audio to Bulgarian text. Return only the translated text."
+- [x] Hata yönetimi: rate limit, timeout, geçersiz yanıt
 
 ### P3 — Yapıştırma & Bildirim (Pano Korumalı)
 - [ ] `PasteManager.cs`: Mevcut panoyu yedekle
