@@ -73,10 +73,10 @@ VoiceTranslate.exe (.NET 8 Windows App)
 - [x] Temel `TrayIcon.cs` (ikon, "Çık" menüsü)
 
 ### P1 — Global Hotkey & Ses Kaydı
-- [ ] `HotkeyManager.cs`: `Ctrl+Shift+B` için `RegisterHotKey` (User32 P/Invoke)
-- [ ] Basılı tut / bırak mantığı
-- [ ] `AudioRecorder.cs`: NAudio ile PCM 16kHz 16-bit mono kayıt
-- [ ] Tray ikonu durumu: gri → kırmızı (kayıt) → sarı (işleniyor) → yeşil (tamam)
+- [x] `HotkeyManager.cs`: `Ctrl+Shift+B` için `RegisterHotKey` (User32 P/Invoke)
+- [x] Basılı tut / bırak mantığı
+- [x] `AudioRecorder.cs`: NAudio ile PCM 16kHz 16-bit mono kayıt
+- [x] Tray ikonu durumu: gri → kırmızı (kayıt) → sarı (işleniyor) → yeşil (tamam)
 
 ### P2 — Gemini API ile Sesli Çeviri
 - [ ] `TranslationService.cs`: WAV byte[] → Bulgarca metin (Doğrudan ses dosyası gönderimi)
